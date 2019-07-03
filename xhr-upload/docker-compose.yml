@@ -1,0 +1,19 @@
+version: '3'
+
+services: 
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - 3001:80
+      
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - 9968:9967
+    volumes:
+      - uploaded-files:/usr/src/app/files
+      
+volumes:
+  uploaded-files:
