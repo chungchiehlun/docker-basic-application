@@ -1,19 +1,26 @@
 version: '3'
 
 services: 
-  frontend:
-    build:
-      context: ./frontend
-    ports:
-      - 3001:80
-      
   backend:
     build:
       context: ./backend
     ports:
-      - 9968:9967
+      - 10321:9000
+    environment:
+      - PORT=9000
     volumes:
       - uploaded-files:/usr/src/app/files
+  frontend:
+    image: nginx:1.15-alpine
+    ports:
+      - 10323:80
+    environment:
+      - PROXY_API=http://10.136.153.253:10321/
+    volumes:
+      - ./frontend/build:/usr/share/nginx/html
+      - ./frontend/default.conf.template:/etc/nginx/conf.d/default.conf.template
+    # https://github.com/docker-library/docs/issues/496#issuecomment-203003827
+    command: /bin/sh -c "envsubst '$$PROXY_API' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
       
 volumes:
   uploaded-files:

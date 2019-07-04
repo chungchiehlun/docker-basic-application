@@ -1,4 +1,4 @@
-FROM node:8-alpine
+FROM node:10-alpine
 
 # https://superuser.com/a/1187246
 RUN apk add --update nodejs nodejs-npm
@@ -17,7 +17,7 @@ RUN npm install --only=production
 # Bundle app source
 COPY . .
  
-EXPOSE 9967
+EXPOSE 9000
 
 # Defines runtime
 CMD [ "npm", "run", "start:prod" ]

@@ -3,6 +3,6 @@ server {
   server_name localhost;
 
   location /api/ {
-    proxy_pass ${PROXY_API};
+    proxy_pass $PROXY_API;
   }
 }

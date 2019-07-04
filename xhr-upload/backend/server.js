@@ -12,20 +12,16 @@ const app = new koa();
 const router = new koaRouter();
 
 router
-.get('/', (ctx, next) => {
-  ctx.body = 'Hello World';
-})
 .post('/upload', koaBody({ multipart: true }), async (ctx, next) => {
-  const { File } = ctx.request.files;
-  
-  // ctx.request.body => Get metadata
+  const { file } = ctx.request.files; 
+
   const saveFile = (file) => {
     const reader = fs.createReadStream(file.path);
     const stream = fs.createWriteStream(path.join(__dirname, "files", file.name))
     reader.pipe(stream);
   }
 
-  saveFile(File)
+  saveFile(file)
 
   ctx.body = {}
 })
