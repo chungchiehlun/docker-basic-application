@@ -1,0 +1,20 @@
+{
+  "name": "xhr-upload",
+  "version": "1.0.0",
+  "description": "Handle classic HTML multipart form uploads",
+  "main": "server.js",
+  "scripts": {
+    "start:prod": "node server.js"
+  },
+  "author": "Jay Chung",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/cors": "^2.2.2",
+    "dotenv": "^6.2.0",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0"
+  }
+}
